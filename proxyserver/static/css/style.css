@@ -1,0 +1,19 @@
+.form-control {
+    width: 40%;
+    margin: auto;
+}
+
+#login {
+    margin-top: 15%;
+    text-align: center;
+}
+
+#navbar-logo {
+    margin-top: -3px;
+    width: 150px;
+    height: 50px;
+}
+
+#country-filter {
+    width: 150px;
+}
