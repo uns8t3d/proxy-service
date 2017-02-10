@@ -1,4 +1,4 @@
-1. git clone git@github.com:alekseysink/proxy-service.git
+1. git clone https://github.com/Eyeless95/proxy-service.git
 2. create virtual_environment, activate it and install requirements (use Python3)
 3. In MySQL create database "proxy_server"
 4. Copy "settings.py.default" and rename it to "settings.py" and change your MySql password
