@@ -90,9 +90,9 @@ WSGI_APPLICATION = 'proxyserver.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'proxy_server',
+        'NAME': 'proxy',
         'USER': 'root',
-        'PASSWORD': 'pass',
+        'PASSWORD': 'qwerty',
         'HOST': '127.0.0.1',
     }
 }
@@ -168,15 +168,30 @@ CELERY_DEFAULT_ROUTING_KEY = 'default'
 
 # here will be scheduled tasks
 CELERYBEAT_SCHEDULE = {
-
+    'add_proxy': {
+        'task': 'proxyserver.apps.core.tasks.add_proxy_to_db',
+        'schedule': crontab(minute='*/3')
+    },
+    'check_proxy': {
+        'task': 'proxyserver.apps.core.tasks.check_task',
+        'schedule': crontab(minute='*/10')
+    }
 }
 
 CELERY_QUEUES = (
     Queue('default', Exchange('default'), routing_key='default'),
     Queue('proxy_finder', Exchange('proxy_finder'), routing_key='proxy_finder'),
+    Queue('proxy_checker', Exchange('proxy_checker'), routing_key='proxy_checker'),
 )
 
 # here will be routes for tasks to queue
 CELERY_ROUTES = {
-
+    'proxyserver.apps.core.tasks.add_proxy_to_db': {
+        'queue': 'proxy_finder',
+        'routing_key': 'proxy_finder'
+    },
+    'proxyserver.apps.core.tasks.check_task': {
+        'queue': 'proxy_checker',
+        'routing_key': 'proxy_checker'
+    },
 }

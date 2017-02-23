@@ -4,10 +4,13 @@ import pytz
 import pygeoip
 from datetime import datetime, timedelta
 
-from django.http import HttpResponse
+#from django.http import HttpResponse
 
 from .models import Proxy
-from proxyserver.apps.scrappers import scrappers
+
+from proxyserver.apps.scrappers import free_proxy_sale, freeproxy_list, hide_me, httptunnel, proxylife, \
+    proxyprivat, sslproxies
+
 from django_countries import countries
 
 
@@ -20,13 +23,14 @@ def check_proxy_for_available(proxies):
     for proxy in proxies:
         try:
             proxy_server = {"http": 'http://' + proxy.ip_address + ':' + str(proxy.port)}
-            requests.get("http://google.com", proxies=proxy_server, timeout=5)
+            r = requests.get("http://google.com", proxies=proxy_server, timeout=5)
         except IOError:
             proxy.status = 'Unreachable'
             proxy.last_checked = datetime.now(pytz.timezone('Europe/Kiev'))
             proxy.ping = '-'
             proxy.save()
-        else:
+            continue
+        if r.status_code == 200:
             proxy.status = 'Available'
             proxy.last_checked = datetime.now(pytz.timezone('Europe/Kiev'))
             # make ping test via bash
@@ -67,19 +71,23 @@ def take_proxy_from_scrapper(proxies):
 
 def call_scrappers():
     list_of_proxy = []
-    for proxy in scrappers.scrap_sslproxies():
+    for proxy in sslproxies.scrap_sslproxies():
         list_of_proxy.append(proxy)
     # for proxy in scrappers.scrap_samair():
-    #     list_of_proxy.append(proxy)
+    #   list_of_proxy.append(proxy)
     #for proxy in scrappers.scrap_foxtools():
-    #    list_of_proxy.append(proxy)
-    for proxy in scrappers.scrap_hide_me():
+    #   list_of_proxy.append(proxy)
+    for proxy in hide_me.scrap_hide_me():
         list_of_proxy.append(proxy)
-    for proxy in scrappers.scrap_proxylife():
+    for proxy in proxylife.scrap_proxylife():
         list_of_proxy.append(proxy)
-    for proxy in scrappers.scrap_proxyprivat():
+    for proxy in proxyprivat.scrap_proxyprivat():
         list_of_proxy.append(proxy)
-    for proxy in scrappers.scrap_free_proxy_sale():
+    for proxy in free_proxy_sale.scrap_free_proxy_sale():
+        list_of_proxy.append(proxy)
+    for proxy in freeproxy_list.scrap_freeproxy_list():
+        list_of_proxy.append(proxy)
+    for proxy in httptunnel.scrap_httptunnel():
         list_of_proxy.append(proxy)
     return [list_of_proxy[d:d + 50] for d in range(0, len(list_of_proxy), 50)]
 
