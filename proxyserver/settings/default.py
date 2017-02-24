@@ -109,13 +109,13 @@ root = lambda *x: os.path.realpath(os.path.join(os.path.abspath(PROJECT_ROOT), *
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = BASE_DIR + '/static'
+STATIC_ROOT = BASE_DIR + '/static_root/'
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "static"),
+# )
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
