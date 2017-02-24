@@ -154,3 +154,4 @@ ENV/
 /celerybeat-schedule
 /celeryev.pid
 /proxyserver/settings/development.py
+/proxyserver/static_root/

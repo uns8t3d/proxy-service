@@ -54,7 +54,7 @@ COUNTRIES_OVERRIDE = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,16 +109,20 @@ root = lambda *x: os.path.realpath(os.path.join(os.path.abspath(PROJECT_ROOT), *
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_ROOT = BASE_DIR + '/static_root'
+
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
 
 LOGIN_REDIRECT_URL = '/home/'
 LOGIN_URL = '/login/'

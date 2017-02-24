@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href='{% static "css/style.css" %}' />
+    <link rel="stylesheet" type="text/css" href='{% static "css/logo-nav.css" %}' />
+    {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>#}
+    {#    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+    <link rel="shortcut icon" href='{% static "images/favicon.ico" %}' type="image/x-icon">
+    <title>InStandart ProxyService</title>
+{% endblock %}
+
+{% block content %}
+    <section class="content">
+    <div class="col-md-12">
+        <div class="box box-danger">
+            <div class="box-header">
+                <h3 class="box-title">Latest Runs</h3>
+            </div>
+            <div class="box-body">
+                <div class="tab-pane active">
+                    <table id="proxyTable" class="table table-hover" width="100%">
+                        <thead>
+                        <tr>
+                            <th>IP Address</th>
+                            <th>Port</th>
+                            <th>Country</th>
+                            <th>Connect type</th>
+                            <th>Status</th>
+                            <th>Anonymity</th>
+                            <th>Ping</th>
+                            <th>Last Checked</th>
+                        </tr>
+                        </thead>
+                        <tfoot class="hide-if-no-paging">
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>
+                                <select class="form-control" id="country-filter">
+                                    <option value="">All</option>
+                                </select>
+                            </th>
+                            <th>
+                                <select class="form-control" id="connection-filter">
+                                    <option value="">All</option>
+                                    <option value="HTTP">HTTP</option>
+                                    <option value="HTTPS">HTTPS</option>
+                                    <option value="SOCKS4">SOCKS4</option>
+                                    <option value="SOCKS5">SOCKS5</option>
+                                    <option value="SSL">SSL</option>
+                                </select>
+                            </th>
+                            <th>
+                                <select class="form-control" id="available-filter">
+                                    <option value=''>All</option>
+                                    <option value='Available'>Available</option>
+                                    <option value='Unreachable'>Unreachable</option>
+                                </select>
+                            </th>
+                            <th>
+                                <select class="form-control" id="anonymity-filter">
+                                    <option value=''>All</option>
+                                    <option value='true'>True</option>
+                                    <option value='false'>False</option>
+                                </select>
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="show-datatable">
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js_bottom %}
+    <script src="{% static 'js/datatables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'js/dataTables.buttons.js' %}"></script>
+    <script src="{% static 'js/fnGetColumnData.js' %}"></script>
+    <script src="{% static 'js/proxy/dashboard.js' %}"></script>
+{% endblock %}

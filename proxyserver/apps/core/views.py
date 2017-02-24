@@ -6,8 +6,8 @@ from django.http import HttpResponse
 from django_countries import countries
 
 
-def main_page(request):
-    return render(request, 'core/main.html')
+def dashboard(request):
+    return render(request, 'dashboard.html')
 
 
 def ajax_get_proxy_list(request):

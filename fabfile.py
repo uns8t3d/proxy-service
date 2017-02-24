@@ -62,11 +62,9 @@ def provisioning():
         run("virtualenv %s --python=/usr/bin/python3" % remote_virtualenv_dir)
         run("git clone -b %s git@github.com:Eyeless95/proxy-service.git" % branch)
         run("%s/bin/pip install -r %s" % (remote_virtualenv_dir, os.path.join(remote_app_dir, "requirements.txt")))
-        run("%s/bin/python fba_reimbursement/manage.py migrate" % remote_virtualenv_dir)
-        run("%s/bin/python fba_reimbursement/manage.py collectstatic --no-input" % remote_virtualenv_dir)
-
-        # run("mkdir proxy-service/logs")
-
+        run("mkdir %s/%s" % (remote_app_dir, 'logs'))
+        run("%s/bin/python proxy-service/manage.py migrate" % remote_virtualenv_dir)
+        run("%s/bin/python proxy-service/manage.py collectstatic --no-input" % remote_virtualenv_dir)
         sudo("cp proxy-service/config/proxy.conf /etc/supervisor/conf.d/")
         sudo("cp proxy-service/config/proxy_celery.conf /etc/supervisor/conf.d/")
         sudo("cp proxy-service/config/proxy_celerybeat.conf /etc/supervisor/conf.d/")
