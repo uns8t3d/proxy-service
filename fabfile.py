@@ -25,8 +25,8 @@ db_create_str = db_create_str.format(db_name=db_name)
 env.forward_agent = True
 env.hosts = ['67.205.186.116']
 
-package_list = ["python-virtualenv", "supervisor", "nginx", "mysql-server", "git", "libmysqlclient-dev", "libxml2-dev",
-                "libxslt-dev", "rabbitmq-server", "python-dev"]
+package_list = ["python-virtualenv3", "supervisor", "nginx", "mysql-server", "git", "libmysqlclient-dev", "libxml2-dev",
+                "libxslt-dev", "rabbitmq-server", "python3-dev"]
 
 
 def prepare_remote_env():
@@ -59,7 +59,7 @@ def set_deploy_env():
 def provisioning():
     set_deploy_env()
     with cd(remote_deploy_dir):
-        run("virtualenv %s" % remote_virtualenv_dir)
+        run("virtualenv %s --python=/usr/bin/python3" % remote_virtualenv_dir)
         run("git clone -b %s git@github.com:Eyeless95/proxy-service.git" % branch)
         run("%s/bin/pip install -r %s" % (remote_virtualenv_dir, os.path.join(remote_app_dir, "requirements.txt")))
         run("%s/bin/python fba_reimbursement/manage.py migrate" % remote_virtualenv_dir)
@@ -86,10 +86,10 @@ def deploy():
         run("%s/bin/python %s/manage.py migrate" % (remote_virtualenv_dir, remote_app_dir))
         run("%s/bin/python %s/manage.py collectstatic --no-input" % (remote_virtualenv_dir, remote_app_dir))
 
-        sudo("cp proxy-service/config/proxy.conf /etc/supervisor/conf.d/")
-        sudo("cp proxy-service/config/proxy_celery.conf /etc/supervisor/conf.d/")
-        sudo("cp proxy-service/config/proxy_celerybeat.conf /etc/supervisor/conf.d/")
-        sudo("cp proxy-service/config/proxy_nginx.conf /etc/nginx/sites-enabled/")
+        sudo("cp config/proxy.conf /etc/supervisor/conf.d/")
+        sudo("cp config/proxy_celery.conf /etc/supervisor/conf.d/")
+        sudo("cp config/proxy_celerybeat.conf /etc/supervisor/conf.d/")
+        sudo("cp config/proxy_nginx.conf /etc/nginx/sites-enabled/")
         sudo("supervisorctl reread")
         sudo("supervisorctl update")
         sudo("supervisorctl restart all")
