@@ -7,7 +7,8 @@ from django_countries import countries
 
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    template_name = 'dashboard.html'
+    return render(request, template_name)
 
 
 def ajax_get_proxy_list(request):

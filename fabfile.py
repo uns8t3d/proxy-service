@@ -23,10 +23,16 @@ db_create_str = db_create_str.format(db_name=db_name)
 
 
 env.forward_agent = True
+env.project_root = remote_app_dir
 env.hosts = ['67.205.186.116']
 
 package_list = ["python-virtualenv3", "supervisor", "nginx", "mysql-server", "git", "libmysqlclient-dev", "libxml2-dev",
                 "libxslt-dev", "rabbitmq-server", "python3-dev"]
+
+
+def deploy_static():
+    with cd(env.project_root):
+        run('%s/bin/python ./manage.py collectstatic -v0 --noinput' % remote_virtualenv_dir)
 
 
 def prepare_remote_env():
