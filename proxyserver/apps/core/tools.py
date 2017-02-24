@@ -34,7 +34,7 @@ def check_proxy_for_available(proxies):
             proxy.status = 'Available'
             proxy.last_checked = datetime.now(pytz.timezone('Europe/Kiev'))
             # make ping test via bash
-            ping = str(os.popen("ping -c1 %s | awk 'FNR == 2 { print $(NF-1) }'" % proxy.ip_address).read())\
+            ping = str(os.popen("ping -c1 %s | awk 'FNR == 2 { print $(NF-1) }'" % proxy.ip_address).read()) \
                 .replace('time=', '')
             if ping != '':
                 proxy.ping = ping + ' ms'
@@ -74,31 +74,33 @@ def call_scrappers():
     try:
         for proxy in sslproxies.scrap_sslproxies():
             list_of_proxy.append(proxy)
-    except IndexError:
+    except Exception as e:
         pass
-    # for proxy in scrappers.scrap_samair():
-    #   list_of_proxy.append(proxy)
-    #for proxy in scrappers.scrap_foxtools():
-    #   list_of_proxy.append(proxy)
     try:
         for proxy in hide_me.scrap_hide_me():
             list_of_proxy.append(proxy)
-    except IndexError:
+    except Exception as e:
         pass
     try:
         for proxy in proxylife.scrap_proxylife():
             list_of_proxy.append(proxy)
-    except IndexError:
+    except Exception as e:
         pass
-    # for proxy in proxyprivat.scrap_proxyprivat():
-    #     list_of_proxy.append(proxy)
+    try:
+        for proxy in proxyprivat.scrap_proxyprivat():
+            list_of_proxy.append(proxy)
+    except Exception as e:
+        pass
     try:
         for proxy in free_proxy_sale.scrap_free_proxy_sale():
             list_of_proxy.append(proxy)
-    except IndexError:
+    except Exception as e:
         pass
-    # for proxy in httptunnel.scrap_httptunnel():
-    #     list_of_proxy.append(proxy)
+    try:
+        for proxy in httptunnel.scrap_httptunnel():
+            list_of_proxy.append(proxy)
+    except Exception as e:
+        pass
     return [list_of_proxy[d:d + 50] for d in range(0, len(list_of_proxy), 50)]
 
 

@@ -153,3 +153,4 @@ ENV/
 .idea/mongoSettings.xml
 /celerybeat-schedule
 /celeryev.pid
+/proxyserver/settings/development.py

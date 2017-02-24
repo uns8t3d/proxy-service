@@ -1,0 +1,11 @@
+DEBUG = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'proxy-service',
+        'USER': 'proxy',
+        'PASSWORD': 'root',
+        'HOST': 'mysql',
+    }
+}

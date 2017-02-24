@@ -15,7 +15,7 @@ Setup with Docker
     User name: root
     Password: root
     Python interpreter path: /root/venv/bin/python
-7. Copy settings.py.docker and name it settings.py
+7. Copy development.py.default and name it development.py
 8. Go to Tools -> Start SSH session and choose session with your remote venv
 9. In remote venv: $ pip install -r requirements
 10. Go to File->Settings->Project: proxy-service->Project Interpreter, click More... Edit your remote venv and name it ProxyEnv
