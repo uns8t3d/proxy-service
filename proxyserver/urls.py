@@ -4,9 +4,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from django.conf.urls import include, url
 from django.contrib import admin
-from proxyserver.apps.authorization import views
-from proxyserver.apps.core import views as core_views, tools
-from django.contrib.auth.decorators import login_required
+from proxyserver.apps.core import tools
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -14,6 +12,5 @@ urlpatterns = [
     url(r'^', include('proxyserver.apps.core.urls', namespace='core')),
     url(r'^api/', include('proxyserver.apps.api.urls')),
     url(r'^pr/$', tools.call_scrappers),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\
-  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
