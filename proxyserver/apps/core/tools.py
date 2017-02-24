@@ -71,20 +71,32 @@ def take_proxy_from_scrapper(proxies):
 
 def call_scrappers():
     list_of_proxy = []
-    for proxy in sslproxies.scrap_sslproxies():
-        list_of_proxy.append(proxy)
+    try:
+        for proxy in sslproxies.scrap_sslproxies():
+            list_of_proxy.append(proxy)
+    except IndexError:
+        pass
     # for proxy in scrappers.scrap_samair():
     #   list_of_proxy.append(proxy)
     #for proxy in scrappers.scrap_foxtools():
     #   list_of_proxy.append(proxy)
-    for proxy in hide_me.scrap_hide_me():
-        list_of_proxy.append(proxy)
-    for proxy in proxylife.scrap_proxylife():
-        list_of_proxy.append(proxy)
-    for proxy in proxyprivat.scrap_proxyprivat():
-        list_of_proxy.append(proxy)
-    for proxy in free_proxy_sale.scrap_free_proxy_sale():
-        list_of_proxy.append(proxy)
+    try:
+        for proxy in hide_me.scrap_hide_me():
+            list_of_proxy.append(proxy)
+    except IndexError:
+        pass
+    try:
+        for proxy in proxylife.scrap_proxylife():
+            list_of_proxy.append(proxy)
+    except IndexError:
+        pass
+    # for proxy in proxyprivat.scrap_proxyprivat():
+    #     list_of_proxy.append(proxy)
+    try:
+        for proxy in free_proxy_sale.scrap_free_proxy_sale():
+            list_of_proxy.append(proxy)
+    except IndexError:
+        pass
     # for proxy in httptunnel.scrap_httptunnel():
     #     list_of_proxy.append(proxy)
     return [list_of_proxy[d:d + 50] for d in range(0, len(list_of_proxy), 50)]

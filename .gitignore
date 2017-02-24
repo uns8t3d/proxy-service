@@ -151,3 +151,5 @@ ENV/
 
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
+/celerybeat-schedule
+/celeryev.pid
