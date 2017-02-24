@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Start ProxyService" type="CompoundRunConfigurationType" factoryName="Compound Run Configuration">
+    <toRun type="Python.DjangoServer" name="Start server" />
+    <toRun type="PythonConfigurationType" name="celery" />
+    <toRun type="PythonConfigurationType" name="celery-beat" />
+    <method />
+  </configuration>
+</component>

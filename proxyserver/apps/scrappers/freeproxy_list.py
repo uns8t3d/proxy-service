@@ -52,4 +52,5 @@ def scrap_freeproxy_list():
                 'anonymity': anonymity_list[i],
                 'country': country_list[i]
             })
+    print (proxies)
     return proxies

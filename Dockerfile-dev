@@ -1,0 +1,3 @@
+FROM eugenes1/python-sshd:3.6
+
+RUN apk -U add mariadb-dev build-base

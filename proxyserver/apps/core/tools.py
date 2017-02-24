@@ -85,10 +85,8 @@ def call_scrappers():
         list_of_proxy.append(proxy)
     for proxy in free_proxy_sale.scrap_free_proxy_sale():
         list_of_proxy.append(proxy)
-    for proxy in freeproxy_list.scrap_freeproxy_list():
-        list_of_proxy.append(proxy)
-    for proxy in httptunnel.scrap_httptunnel():
-        list_of_proxy.append(proxy)
+    # for proxy in httptunnel.scrap_httptunnel():
+    #     list_of_proxy.append(proxy)
     return [list_of_proxy[d:d + 50] for d in range(0, len(list_of_proxy), 50)]
 
 
