@@ -109,7 +109,7 @@ root = lambda *x: os.path.realpath(os.path.join(os.path.abspath(PROJECT_ROOT), *
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = BASE_DIR + '/static_root'
+STATIC_ROOT = BASE_DIR + '/static'
 
 STATIC_URL = '/static/'
 
