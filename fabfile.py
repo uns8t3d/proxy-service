@@ -84,7 +84,7 @@ def deploy():
     with cd(remote_app_dir):
         run("git fetch")
         run("git checkout %s" % branch)
-        run("git pull --force")
+        run("git pull")
         run("%s/bin/pip install -r %s" % (remote_virtualenv_dir, os.path.join(remote_app_dir, "requirements.txt")))
 
         run("%s/bin/python %s/manage.py migrate" % (remote_virtualenv_dir, remote_app_dir))
