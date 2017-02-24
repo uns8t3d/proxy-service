@@ -14,7 +14,7 @@ SECRET_KEY = '1wkp6^g)_9@q90vu-hwcb2=+yjkfhp968!d!5v%g97w9qol^ly'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = ['proxy.instandart.com', '67.205.186.116']
+ALLOWED_HOSTS = ['proxy-service.instandart.com', '67.205.186.116']
 
 # Application definition
 
@@ -108,7 +108,7 @@ root = lambda *x: os.path.realpath(os.path.join(os.path.abspath(PROJECT_ROOT), *
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = root('static_root')
+STATIC_ROOT = BASE_DIR + '/static_root'
 STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (
