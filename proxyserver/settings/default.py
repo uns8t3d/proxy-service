@@ -128,21 +128,7 @@ LOGIN_REDIRECT_URL = '/home/'
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 
-
-# CELERY SETTINGS
-BROKER_URL = 'amqp://guest:guest@rabbitmq:5672//'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = 'amqp://guest@rabbitmq//'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_ALWAYS_EAGER = False
-CELERYD_MAX_TASKS_PER_CHILD = 4
-CELERYD_PREFETCH_MULTIPLIER = 1
-CELERY_DEFAULT_QUEUE = 'default'
-CELERY_DEFAULT_EXCHANGE_TYPE = 'default'
-CELERY_DEFAULT_ROUTING_KEY = 'default'
-
-# here will be scheduled tasks
+# init schedule
 CELERYBEAT_SCHEDULE = {
     'add_proxy': {
         'task': 'proxyserver.apps.core.tasks.add_proxy_to_db',
@@ -154,13 +140,14 @@ CELERYBEAT_SCHEDULE = {
     }
 }
 
+# init queues
 CELERY_QUEUES = (
     Queue('default', Exchange('default'), routing_key='default'),
     Queue('proxy_finder', Exchange('proxy_finder'), routing_key='proxy_finder'),
     Queue('proxy_checker', Exchange('proxy_checker'), routing_key='proxy_checker'),
 )
 
-# here will be routes for tasks to queue
+# assign each task to queue
 CELERY_ROUTES = {
     'proxyserver.apps.core.tasks.add_proxy_to_db': {
         'queue': 'proxy_finder',

@@ -18,6 +18,21 @@ here = lambda *x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 PROJECT_ROOT = os.path.realpath(here(".."))
 root = lambda *x: os.path.realpath(os.path.join(os.path.abspath(PROJECT_ROOT), *x))
 
+# CELERY SETTINGS
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'amqp://guest@localhost//'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ALWAYS_EAGER = False
+CELERYD_MAX_TASKS_PER_CHILD = 4
+CELERYD_PREFETCH_MULTIPLIER = 1
+CELERY_DEFAULT_QUEUE = 'default'
+CELERY_DEFAULT_EXCHANGE_TYPE = 'default'
+CELERY_DEFAULT_ROUTING_KEY = 'default'
+
+
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
