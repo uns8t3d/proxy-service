@@ -115,7 +115,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    '/opt/proxy/proxy-service/proxyserver/static',
+    '/opt/proxy/proxy-service/proxyserver/static_root',
 )
 
 STATICFILES_FINDERS = (
