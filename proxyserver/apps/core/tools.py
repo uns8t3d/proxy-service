@@ -76,11 +76,11 @@ def call_scrappers():
             list_of_proxy.append(proxy)
     except Exception as e:
         pass
-    # try:
-    #     for proxy in hide_me.scrap_hide_me():
-    #         list_of_proxy.append(proxy)
-    # except Exception as e:
-    #     pass
+    try:
+        for proxy in hide_me.scrap_hide_me():
+            list_of_proxy.append(proxy)
+    except Exception as e:
+        pass
     try:
         for proxy in proxylife.scrap_proxylife():
             list_of_proxy.append(proxy)
@@ -91,11 +91,11 @@ def call_scrappers():
             list_of_proxy.append(proxy)
     except Exception as e:
         pass
-    # try:
-    #     for proxy in free_proxy_sale.scrap_free_proxy_sale():
-    #         list_of_proxy.append(proxy)
-    # except Exception as e:
-    #     pass
+    try:
+        for proxy in free_proxy_sale.scrap_free_proxy_sale():
+            list_of_proxy.append(proxy)
+    except Exception as e:
+        pass
     try:
         for proxy in httptunnel.scrap_httptunnel():
             list_of_proxy.append(proxy)

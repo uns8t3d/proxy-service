@@ -28,7 +28,7 @@ def scrap_freeproxy_list():
 
         anonymity_list = []
         for i in range(1, len(port), 4):
-            if port[i] == "Yes":
+            if port[i] == "Да":
                 anonymity = True
             else:
                 anonymity = False
@@ -52,5 +52,5 @@ def scrap_freeproxy_list():
                 'anonymity': anonymity_list[i],
                 'country': country_list[i]
             })
-    print (proxies)
+    print(proxies)
     return proxies

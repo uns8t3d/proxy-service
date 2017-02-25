@@ -20,7 +20,7 @@ def scrap_hide_me():
         for server_row in server_rows[1:]:
             for c in server_row.find_all("td"):
                 server.append(c.text)
-            if server[5] == "No":
+            if server[5] == "Нет":
                 anonymity = False
             else:
                 anonymity = True
