@@ -28,7 +28,7 @@ def scrap_freeproxy_list():
 
         anonymity_list = []
         for i in range(1, len(port), 4):
-            if port[i] == "Да":
+            if port[i] == "Yes":
                 anonymity = True
             else:
                 anonymity = False

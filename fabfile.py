@@ -26,7 +26,7 @@ env.forward_agent = True
 env.project_root = remote_app_dir
 env.hosts = ['67.205.186.116']
 
-package_list = ["python-virtualenv3", "supervisor", "nginx", "mysql-server", "git", "libmysqlclient-dev", "libxml2-dev",
+package_list = ["python-virtualenv", "supervisor", "nginx", "mysql-server", "git", "libmysqlclient-dev", "libxml2-dev",
                 "libxslt-dev", "rabbitmq-server", "python3-dev"]
 
 
@@ -65,7 +65,7 @@ def set_deploy_env():
 def provisioning():
     set_deploy_env()
     with cd(remote_deploy_dir):
-        run("virtualenv %s --python=/usr/bin/python3" % remote_virtualenv_dir)
+        run("virtualenv %s" % remote_virtualenv_dir)
         run("git clone -b %s git@github.com:Eyeless95/proxy-service.git" % branch)
         run("%s/bin/pip install -r %s" % (remote_virtualenv_dir, os.path.join(remote_app_dir, "requirements.txt")))
         run("mkdir %s/%s" % (remote_app_dir, 'logs'))

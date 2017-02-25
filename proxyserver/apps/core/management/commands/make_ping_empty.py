@@ -9,8 +9,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for p in Proxy.objects.all():
             p.ping = ''
-            print(p.ip_address)
+            print p.ip_address
             p.save()
-        print('DONE')
+        print 'DONE'
 
 
