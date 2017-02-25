@@ -40,8 +40,11 @@ def check_proxy_for_available(proxies):
                 proxy.ping = ping + ' ms'
             else:
                 proxy.ping = 'UD'
-            proxy.save()
 
+        else:
+            proxy.status = 'Unreachable'
+            # proxy.delete()
+            proxy.save()
 
 def take_proxy_from_scrapper(proxies):
     country_list = []
