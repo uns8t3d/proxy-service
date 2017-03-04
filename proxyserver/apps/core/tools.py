@@ -46,6 +46,7 @@ def check_proxy_for_available(proxies):
             # proxy.delete()
             proxy.save()
 
+
 def take_proxy_from_scrapper(proxies):
     country_list = []
     for code, name in list(countries):
