@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from .models import Proxy
 
 from proxyserver.apps.scrappers import free_proxy_sale, freeproxy_list, hide_me, httptunnel, proxylife, \
-    proxyprivat, sslproxies
+    proxyprivat, sslproxies, spys
 
 from django_countries import countries
 
@@ -101,6 +101,11 @@ def call_scrappers():
         pass
     try:
         for proxy in httptunnel.scrap_httptunnel():
+            list_of_proxy.append(proxy)
+    except Exception as e:
+        pass
+    try:
+        for proxy in spys.Spys_ru():
             list_of_proxy.append(proxy)
     except Exception as e:
         pass

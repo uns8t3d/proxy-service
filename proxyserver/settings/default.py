@@ -132,7 +132,7 @@ LOGOUT_URL = '/logout/'
 CELERYBEAT_SCHEDULE = {
     'add_proxy': {
         'task': 'proxyserver.apps.core.tasks.add_proxy_to_db',
-        'schedule': crontab(minute='*/3')
+        'schedule': crontab()
     },
     'check_proxy': {
         'task': 'proxyserver.apps.core.tasks.check_task',
