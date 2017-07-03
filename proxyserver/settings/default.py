@@ -158,3 +158,5 @@ CELERY_ROUTES = {
         'routing_key': 'proxy_checker'
     },
 }
+
+AUTH_PROFILE_MODULE = "proxyserver.apps.authorization.Users"

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        {% if user.is_superuser %}
+            <form>
+                <input type="button" value="Add User" onClick='location.href="http://127.0.0.1:8000/profile/contact/"'>
+            </form>
+            <form>
+                <input type="button" value="All User" onClick='location.href="http://127.0.0.1:8000/profile/users/"'>
+            </form>
+        {% else %}
+        <h1>Profile</h1>
+        <p>Username: {{ user.username }}</p>
+        <p>First name: {{ user.first_name}}</p>
+        <p>Last name: {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+    <form>
+        <input type="button" value="Edit Profile" onClick='location.href="http://127.0.0.1:8000/profile/edit/"'>
+    </form>
+    {% endif %}
+    </div>
+{% endblock %}

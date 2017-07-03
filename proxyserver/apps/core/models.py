@@ -39,3 +39,4 @@ class Proxy(models.Model):
 
     def __str__(self):
         return self.ip_address + ':' + str(self.port)
+

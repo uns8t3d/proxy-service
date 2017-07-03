@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    <br>
+    <form>
+        <input type="button" value="Edit Password" onClick='location.href="http://127.0.0.1:8000/change_password/"'>
+    </form>
+    </div>
+{% endblock %}

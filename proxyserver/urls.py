@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'^', include('proxyserver.apps.authorization.urls', namespace='auth')),
     url(r'^', include('proxyserver.apps.core.urls', namespace='core')),
     url(r'^api/', include('proxyserver.apps.api.urls')),
-    url(r'^pr/$', tools.call_scrappers),
+    url(r'^pr/$', tools.call_scrappers)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
